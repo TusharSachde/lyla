@@ -17,3 +17,12 @@ angular.module('starter.services', [])
 }
          }
 });
+
+var myservices = angular.module('myservices', [])
+
+.factory('MyServices', function ($http,$location) {
+    
+    return {
+        
+         }
+});
