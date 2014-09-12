@@ -1,0 +1,126 @@
+/* Empty. Add your own CSS if you like */
+
+@font-face {
+    font-family: 'Cheddar Jack';
+    src: url('Cheddar Jack.ttf');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('Raleway-Regular.otf');
+    font-weight: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('Raleway-light.otf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('Raleway-bold.otf');
+    font-weight: bold;
+}
+body {
+    font-family: 'Raleway' !important;
+}
+input,
+button,
+select,
+textarea {
+    font-family: 'Raleway' !important;
+}
+.full-image {
+    height: 100%;
+}
+a {
+    text-decoration: none !important;
+}
+.menu-name {
+    position: relative;
+    top: -60px;
+    background: rgba(224, 240, 255, 0.9);
+    color: #a8a8a8;
+    padding: 10px 5px;
+    display: block;
+    right: 0px;
+    margin-bottom: -50px;
+    text-align: center;
+}
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.royal {
+    color: #03e1e4 !important;
+}
+.button-royal {
+    background-color: #03e1e4 !important;
+    border-color: #03e1e4 !important;
+    color: #fff !important;
+}
+.button-positive {
+    border-color: #03e1e4 !important;
+    background-color: #03e1e4 !important;
+    color: #fff !important;
+}
+.button-balanced {
+    border-color: #03e1e4 !important;
+    background-color: #03e1e4 !important;
+    color: #fff !important;
+}
+.button-outline.button-balanced {
+    border-color: #39CE86 !important;
+    background-color: #fff !important;
+    color: #39CE86 !important;
+}
+.bar.bar-royal .title {
+    color: #696969;
+    font-family: 'Cheddar Jack' !important;
+    font-size: 24px;
+}
+.bar-royal {
+    background-color: #d8f2ef !important;
+    border-color: #C9EEEA !important;
+    border-bottom-width: 2px;
+    background-color: #d8f2ef !important;
+    background-image: linear-gradient(0deg, #d8f2ef, #d8f2ef 50%, transparent 50%) !important;
+    color: #696969 !important;
+}
+.tabs .tab-item {
+    color: #696969;
+}
+.item {
+    color: #a8a8a8 !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+p {
+    color: #a8a8a8;
+    font-family: 'Raleway' !important;
+}
+.tabs {
+    background-color: #d8f2ef !important;
+    border-color: #C9EEEA !important;
+    color: #fff !important;
+}
+.tab-item {
+    font-family: 'Raleway' !important;
+}
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
+    background: #03e1e4;
+}
+.checkbox input:before,
+.checkbox .checkbox-icon:before {
+    border-color: #03e1e4;
+}
+.lookbook img {
+    padding: 0 10px;
+}
