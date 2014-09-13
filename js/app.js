@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+
+
+angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
 
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -20,6 +22,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     });
 })
+
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -59,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.items', {
-        url: '/dash/categories/1',
+        url: '/dash/categories/:cid',
         views: {
             'tab-dash': {
                 templateUrl: 'templates/shop-items.html',
@@ -69,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.product', {
-        url: '/dash/categories/1/product',
+        url: '/dash/categories/:cid/:id/product',
         views: {
             'tab-dash': {
                 templateUrl: 'templates/shop-product.html',
@@ -176,4 +179,45 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.filter('imagepath', function () {
+    return function (input) {
+        if (input == null) {
+            //return "http://www.wohlig.co.in/zibabackend/uploads/2239a46835dc42bc7a6acade8f8517e9.jpg";
+        } else {
+            return "http://zibacollection.co.uk/lyla/uploads/" + input;
+        }
+    };
+})
+.filter('inSlicesOf', 
+        ['$rootScope',  
+         function($rootScope) {
+             makeSlices = function(items, count) { 
+                 if (!count)            
+                     count = 3;
+
+                 if (!angular.isArray(items) && !angular.isString(items)) return items;
+
+                 var array = [];
+                 for (var i = 0; i < items.length; i++) {
+                     var chunkIndex = parseInt(i / count, 10);
+                     var isFirst = (i % count === 0);
+                     if (isFirst)
+                         array[chunkIndex] = [];
+                     array[chunkIndex].push(items[i]);
+                 }
+
+                 if (angular.equals($rootScope.arrayinSliceOf, array))
+                     return $rootScope.arrayinSliceOf;
+                 else
+                     $rootScope.arrayinSliceOf = array;
+
+                 return array;
+             };
+
+             return makeSlices; 
+         }]
+       )
+
+;

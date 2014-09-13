@@ -1,14 +1,24 @@
-<ion-view title="Bahar Necklace">
+<ion-view title="{{item.product.name}}">
     <ion-content class="has-header">
         <ion-list>
+            <ion-slide-box show-pager="true" auto-play="true" pager-click="true">
+                <ion-slide ng-repeat="itemimg in item.productimage">
+                    <div class="box">
+                        <img ng-src="{{itemimg.image|imagepath}}" class="full-image">
+                    </div>
+                </ion-slide>
+            </ion-slide-box>
             <div class="row">
                 <div class="col">
-                    <img src="img/item.jpg" class="full-image">
-                    <h3 class="text-center"><span class="royal">&pound; 70</span></h3>
-                    <p><strong>Materials:</strong> Brass &amp; glass</p>
-                    <p><strong>Measurements:</strong> 17” inside neck measurement + 2” extension chain</p>
-                    <p><strong>Available:</strong> 5 pcs</p>
-                    <a href="#/tab/cart"><button class="button button-royal button-block">Add to cart</button></a>
+                    <h3 class="text-center"><span class="royal">{{item.product.price|currency}}</span></h3>
+                    <p><strong>Description:</strong> {{item.product.description}}</p>
+
+                    <p><strong>Available:</strong> {{item.product.quantity}} pcs</p>
+
+
+
+                    <button class="button button-royal button-block icon-left ion-ios7-cart">Add to cart</button>
+
                 </div>
             </div>
         </ion-list>

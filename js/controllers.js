@@ -1,49 +1,66 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['myservices'])
 
-.controller('DashCtrl', function ($scope) {})
-
-.controller('CategoryCtrl', function ($scope, $stateParams, Jewelleries) {
-    $scope.jewelleries = Jewelleries.all();
-    $scope.jewellery = Jewelleries.get($stateParams.jewelleryId);
+.controller('DashCtrl', function ($scope, $stateParams, MyServices) {
+    
+    
 })
 
-.controller('ItemCtrl', function ($scope, $stateParams, Jewelleries) {
-    $scope.jewelleries = Jewelleries.all();
-    $scope.jewellery = Jewelleries.get($stateParams.jewelleryId);
+.controller('CategoryCtrl', function ($scope, $stateParams, MyServices) {
+    
 })
 
-.controller('ProductCtrl', function ($scope, $stateParams, Jewelleries) {
-    $scope.jewelleries = Jewelleries.all();
-    $scope.jewellery = Jewelleries.get($stateParams.jewelleryId);
+.controller('ItemCtrl', function ($scope, $stateParams,MyServices) {
+    var categoryId= $stateParams.cid;
+
+    var onsuccess = function(data, status)
+    {
+        $scope.products = data;
+        
+        $scope.productItem = [];
+        var change = 11;
+        var counter = 0;
+        $scope.loadMore = function() {
+            console.log(":");
+            if(counter < $scope.products.product.length) {
+            for(var i=counter;i<=(counter+change);i++){
+                $scope.productItem.push($scope.products.product[i]);
+            };
+                counter += change + 1;
+            };
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        };
+
+        $scope.loadMore();
+       
+    };
+    MyServices.getproductbycategory(categoryId).success(onsuccess);
+    
+})
+
+.controller('ProductCtrl', function ($scope, $stateParams,$ionicSlideBoxDelegate ,$timeout , MyServices) {
+    
+    var productId= $stateParams.id;
+
+    var onsuccess = function(data, status)
+    {
+        $scope.item = data;
+        console.log(data);
+    };
+    MyServices.getproductdetails(productId).success(onsuccess);
+    
+    //SLIDE BOX
+    $scope.nextSlide = function() {
+        $ionicSlideBoxDelegate.next();
+    };
+    $scope.prevSlide = function() {
+        $ionicSlideBoxDelegate.previous();
+    };
+    $timeout(function(){
+        $ionicSlideBoxDelegate.update();
+    },1000);
 })
 
 .controller('LookbookCtrl', function ($scope, $stateParams) {
-    $scope.lookbooks = [
-        {
-            id: 0,
-            name: "View All"
-        },
-        {
-            id: 1,
-            name: "Global Grunge"
-        },
-        {
-            id: 2,
-            name: "It's all about LEATHER"
-        },
-        {
-            id: 3,
-            name: "It's all about LAYERED"
-        },
-        {
-            id: 4,
-            name: "Punk'd"
-        },
-        {
-            id: 5,
-            name: "It's all about LOVE"
-        },
-    ];
 })
 
 .controller('LookbookitemCtrl', function ($scope) {})

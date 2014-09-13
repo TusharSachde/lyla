@@ -1,28 +1,28 @@
-angular.module('starter.services', [])
-.factory('Jewelleries', function() {
-    var jewelleries = [
-        { id: 0, name: 'View All' },
-        { id: 1, name: 'Necklace' },
-        { id: 2, name: 'Bracelets' },
-        { id: 3, name: 'Earings' },
-        { id: 4, name: 'Rings' },
-    ];
-
-        return {
-        all: function() {
-        return jewelleries;
-        },
-        get: function(jewelleryId) {
-        return jewelleries[jewelleryId];
-}
-         }
-});
+var adminurl = 'http://zibacollection.co.uk/lyla/index.php/json/';
 
 var myservices = angular.module('myservices', [])
 
-.factory('MyServices', function ($http,$location) {
-    
+.factory('MyServices', function ($http, $location) {
+    var retailer=0;
+    var category=0;
     return {
-        
-         }
+        getproductdetails: function (product, category) {
+            return $http.get(adminurl + 'getproductdetails', {
+                params: {
+                    product: product
+                }
+            }, {
+                withCredentials: true
+            });
+        },
+        getproductbycategory: function (category) {
+            return $http.get(adminurl + 'getproductbycategory', {
+                params: {
+                    category: category
+                }
+            }, {
+                withCredentials: true
+            });
+        },
+    }
 });

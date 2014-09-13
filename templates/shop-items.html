@@ -1,77 +1,22 @@
-<ion-view title="Necklace">
+<ion-view title="{{products.category.name}}">
     <ion-content class="has-header">
-       
         <div class="item item-divider">
             <h4 class="pull-left">Sort by</h4>
             <h4 class="pull-right">Filters</h4>
         </div>
-        <div class="list" style="display:none;">
-            <label class="item item-radio">
-                <input type="radio" name="group">
-                <div class="item-content">
-                    Price
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
-            <label class="item item-radio">
-                <input type="radio" name="group">
-                <div class="item-content">
-                    Popularity
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
-            <label class="item item-radio">
-                <input type="radio" name="group">
-                <div class="item-content">
-                    Availability
-                </div>
-                <i class="radio-icon ion-checkmark"></i>
-            </label>
+
+        <div class="row productsCol" ng-repeat="pros in productItem | inSlicesOf:3">
+            <div class="col col-33 text-center" ng-repeat="pro in pros">
+                <a href="#/tab/dash/categories/{{products.currentcategory}}/{{pro.id}}/product">
+                    <div class="item">
+                        <img src="{{pro.productimage[0].image|imagepath}}" class="full-image">
+                        <p>{{pro.name}}</p>
+                        <span class="royal">{{pro.price|currency}}</span>
+                    </div>
+                </a>
+            </div>
         </div>
-       
-        <ion-list>
-            <div class="row">
-                <div class="col col-33 text-center">
-                    <a href="#/tab/dash/categories/1/product">
-                        <div class="item">
-                            <img src="img/item.jpg" class="full-image">
-                            <p>Bahar Necklace</p>
-                            <span class="royal">&pound; 70</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col col-33 text-center">
-                    <a href="#/tab/dash/categories/1/product">
-                        <div class="item">
-                            <img src="img/item.jpg" class="full-image">
-                            <p>Bahar Necklace</p>
-                            <span class="royal">&pound; 70</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col col-33 text-center">
-                    <a href="#/tab/dash/categories/1/product">
-                        <div class="item">
-                            <img src="img/item.jpg" class="full-image">
-                            <p>Bahar Necklace</p>
-                            <span class="royal">&pound; 70</span>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col col-33 text-center">
-                    <a href="#/tab/dash/categories/1/product">
-                        <div class="item">
-                            <img src="img/item.jpg" class="full-image">
-                            <p>Bahar Necklace</p>
-                            <span class="royal">&pound; 70</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </ion-list>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="10%" icon="ion-loading-c">
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

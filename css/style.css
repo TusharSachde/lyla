@@ -30,7 +30,7 @@ textarea {
     font-family: 'Raleway' !important;
 }
 .full-image {
-    height: 100%;
+    width: 100%;
 }
 a {
     text-decoration: none !important;
@@ -38,8 +38,8 @@ a {
 .menu-name {
     position: relative;
     top: -60px;
-    background: rgba(224, 240, 255, 0.9);
-    color: #a8a8a8;
+    background: rgba(223, 239, 238, 0.85);
+    color: #280978;
     padding: 10px 5px;
     display: block;
     right: 0px;
@@ -79,6 +79,10 @@ a {
     color: #696969;
     font-family: 'Cheddar Jack' !important;
     font-size: 24px;
+    text-transform: lowercase;
+}
+.bar.bar-royal .title:first-letter {
+    text-transform: uppercase !important;
 }
 .bar-royal {
     background-color: #d8f2ef !important;
@@ -123,4 +127,11 @@ p {
 }
 .lookbook img {
     padding: 0 10px;
+}
+.productsCol .col {
+    padding: 2px;
+    -webkit-transition: all 500ms;
+}
+.productsCol .col:hover {
+    padding: 5px;
 }
