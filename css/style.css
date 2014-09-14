@@ -12,12 +12,12 @@
 }
 @font-face {
     font-family: 'Raleway';
-    src: url('Raleway-light.otf');
+    src: url('Raleway-Light.otf');
     font-weight: 300;
 }
 @font-face {
     font-family: 'Raleway';
-    src: url('Raleway-bold.otf');
+    src: url('Raleway-Bold.otf');
     font-weight: bold;
 }
 body {
@@ -134,4 +134,16 @@ p {
 }
 .productsCol .col:hover {
     padding: 5px;
+}
+.bar .button.back-button {
+    color: #696969;
+}
+.slider-pager .slider-pager-page {
+    color: #696969;
+}
+.numeric {
+    width: 100px;
+    float: left;
+    height: 25px !important;
+    padding: 0 10px;
 }

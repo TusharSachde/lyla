@@ -9,7 +9,7 @@ angular.module('starter.controllers', ['myservices'])
     
 })
 
-.controller('ItemCtrl', function ($scope, $stateParams,MyServices) {
+.controller('ItemCtrl', function ($scope, $stateParams, MyServices) {
     var categoryId= $stateParams.cid;
 
     var onsuccess = function(data, status)
@@ -37,8 +37,14 @@ angular.module('starter.controllers', ['myservices'])
     
 })
 
-.controller('ProductCtrl', function ($scope, $stateParams,$ionicSlideBoxDelegate ,$timeout , MyServices) {
-    
+.controller('ProductCtrl', function ($scope, $stateParams,$ionicSlideBoxDelegate ,$timeout ,$ionicLoading, MyServices) {
+    $ionicLoading.show({
+        template: 'Loading...',
+        animation: 'fade-in',
+        showBackdrop: false,
+        maxWidth: 200,
+        showDelay: 500
+    });
     var productId= $stateParams.id;
 
     var onsuccess = function(data, status)
@@ -57,7 +63,8 @@ angular.module('starter.controllers', ['myservices'])
     };
     $timeout(function(){
         $ionicSlideBoxDelegate.update();
-    },1000);
+        $ionicLoading.hide();
+    },2000);
 })
 
 .controller('LookbookCtrl', function ($scope, $stateParams) {
