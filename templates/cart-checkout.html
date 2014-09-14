@@ -49,19 +49,26 @@
             <i class="radio-icon ion-checkmark"></i>
         </label>
 
-
-        <div class="item item-divider">Gift Information</div>
-            <li class="item item-checkbox">
-                <label class="checkbox">
-                    <input type="checkbox">
-                </label>
-                Add gift options.
-            </li>
-        
         <div class="item item-divider">Payment Information</div>
         <div class="padding">
 
             <button class="button button-small button-royal" id="customButton">Pay with card</button>
+            
+            <form action="#/thankyou" method="POST">
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="pk_live_LummdQUKjom4PnlfHJhLPDKC" data-image="img/logo.png" data-name="Lyla Loves" data-description="Total Amount: {{gettotal|currency}}" data-currency="GBP" data-amount="{{gettotal*100}}">
+                </script>
+            </form>
+            <script src="lib/js/paypal-button.min.js?merchant=rajan@ispirare-acc.co.uk"
+                    data-button="buynow"
+                    data-name="Lyla Loves"
+                    data-amount="{{gettotal}}"
+                    data-currency="GBP"
+                    data-callback="#"
+                    async
+                    ></script>
+
+        </div>
+            
 
             <script>
                 

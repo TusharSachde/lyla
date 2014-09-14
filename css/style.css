@@ -142,8 +142,10 @@ p {
     color: #696969;
 }
 .numeric {
-    width: 100px;
+    width: 55px;
+    text-align:center;
     float: left;
     height: 25px !important;
     padding: 0 10px;
+    color: #a8a8a8 !important;
 }

@@ -1,21 +1,14 @@
 <ion-view title="My Cart">
     <ion-content class="has-header">
+       
         <div class="list">
-            <a class="item item-thumbnail-left" href="#">
-                <img src="img/item.jpg">
-                <h2>Bahar Necklace</h2>
-                <h3 class="royal">&pound; 70</h3>
-                <p><strong>Quantity:</strong> 1</p>
-                <button class="button button-clear button-asseertive button-small">REMOVE</button>
+            <a class="item item-thumbnail-left" ng-repeat="product in products">
+                <img src="{{product.image|imagepath}}">
+                <h2>{{product.name}}</h2>
+                <h3 class="royal">{{product.price|currency}}</h3>
+                <p><strong>Quantity:</strong> {{product.qty}}</p>
+                <button class="button button-clear button-assertive button-small" ng-click="deletecart(product.id)">REMOVE</button>
             </a>
-            <a class="item item-thumbnail-left" href="#">
-                <img src="img/item.jpg">
-                <h2>Bahar Necklace</h2>
-                <h3 class="royal">&pound; 70</h3>
-                <p><strong>Quantity:</strong> 1</p>
-                <button class="button button-clear button-asseertive button-small">REMOVE</button>
-            </a>
-            
             <div class="item item-divider">Discount</div>
             <div class="item item-input-inset">
                 <label class="item-input-wrapper royal">
@@ -32,11 +25,11 @@
                     &pound; 0
                 </span>
             </a>
-               <a class="item item-icon-left" href="#">
+               <a class="item item-icon-left">
                 <i class="icon ion-ios7-cart"></i>
                 Total Amount
                 <span class="item-note">
-                    &pound; 140
+                    {{gettotal|currency}}
                 </span>
             </a>
         </div>
