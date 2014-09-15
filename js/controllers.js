@@ -11,24 +11,26 @@ angular.module('starter.controllers', ['myservices'])
 
 .controller('ItemCtrl', function ($scope, $stateParams, MyServices) {
     var categoryId = $stateParams.cid;
-
-    var onsuccess = function (data, status) {
-        $scope.products = data;
-
+    
         $scope.productItem = [];
         var change = 11;
         var counter = 0;
-        $scope.loadMore = function () {
-            console.log(":");
-            if (counter < $scope.products.product.length) {
-                for (var i = counter; i <= (counter + change); i++) {
-                    $scope.productItem.push($scope.products.product[i]);
-                };
-                counter += change + 1;
+    
+     $scope.loadMore = function () {
+            var sum = counter + change;
+             if(sum > $scope.products.product.length)
+             {
+                sum = $scope.products.product.length;
+             }
+            for (var i = counter; i <= sum; i++) {
+                $scope.productItem.push($scope.products.product[i]);
             };
+            counter += change + 1;
             $scope.$broadcast('scroll.infiniteScrollComplete');
         };
-
+    
+    var onsuccess = function (data, status) {
+        $scope.products = data;
         $scope.loadMore();
 
     };
