@@ -1,4 +1,4 @@
-var adminurl = 'http://zibacollection.co.uk/lyla/index.php/json/';
+var adminurl = 'http://lylaloves.co.uk/admin/index.php/json/';
 
 var myservices = angular.module('myservices', [])
 
