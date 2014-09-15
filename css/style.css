@@ -149,3 +149,6 @@ p {
     padding: 0 10px;
     color: #a8a8a8 !important;
 }
+.tabs-striped .tab-item + .tab-item:before {
+    border-left: 0px solid #ccc;
+}

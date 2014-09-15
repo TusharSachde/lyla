@@ -36,7 +36,24 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
-.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $timeout, $ionicLoading, MyServices) {
+.controller('ProductCtrl', function ($scope, $stateParams, $ionicSlideBoxDelegate, $ionicPopup, $timeout, $ionicLoading, MyServices) {
+
+    $scope.showPopup = function () {
+        $scope.data = {}
+
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="text-center"><h1 class="ion-ios7-checkmark balanced"></h1><p>'+$scope.item.product.name+' added to cart!</p>',
+            title: 'Added to cart!',
+            scope: $scope,
+
+        });
+        $timeout(function() {
+            myPopup.close(); //close the popup after 3 seconds for some reason
+        }, 1500);
+    };
+    
+    //Loader
     $ionicLoading.show({
         template: 'Loading...',
         animation: 'fade-in',
@@ -57,6 +74,7 @@ angular.module('starter.controllers', ['myservices'])
     $scope.addtocart = function (id, name, price, quantity) {
 
         MyServices.addtocart(id, name, price, quantity);
+        $scope.showPopup();
 
     };
 
@@ -106,7 +124,7 @@ angular.module('starter.controllers', ['myservices'])
     $scope.deletecart = function (id) {
         MyServices.deletecartfromsession(id).success(ondeletesuccess);
     };
-    
+
     //Total
     var ontotalsuccess = function (data, status) {
         $scope.gettotal = data;
@@ -122,7 +140,7 @@ angular.module('starter.controllers', ['myservices'])
         $scope.gettotal = data;
     };
     MyServices.totalcart().success(ontotalsuccess);
-    
+
     $scope.$on('$viewContentLoaded', function () {
         var handler = StripeCheckout.configure({
             key: 'pk_live_LummdQUKjom4PnlfHJhLPDKC',
@@ -137,9 +155,9 @@ angular.module('starter.controllers', ['myservices'])
             // Open Checkout with further options
             handler.open({
                 name: 'Lyla Loves',
-                description: 'Total: £'+$scope.gettotal+'.00',
+                description: 'Total: £' + $scope.gettotal + '.00',
                 currency: 'GBP',
-                amount: ($scope.gettotal*100)
+                amount: ($scope.gettotal * 100)
             });
             e.preventDefault();
         });
