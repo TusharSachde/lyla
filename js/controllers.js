@@ -1,7 +1,10 @@
 angular.module('starter.controllers', ['myservices'])
 
-.controller('DashCtrl', function ($scope, $stateParams, MyServices) {
+.controller('HomeCtrl', function ($scope, $stateParams, MyServices) {
 
+})
+
+.controller('DashCtrl', function ($scope, $stateParams, MyServices) {
 
 })
 

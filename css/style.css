@@ -143,7 +143,7 @@ p {
 }
 .numeric {
     width: 55px;
-    text-align:center;
+    text-align: center;
     float: left;
     height: 25px !important;
     padding: 0 10px;
@@ -151,4 +151,7 @@ p {
 }
 .tabs-striped .tab-item + .tab-item:before {
     border-left: 0px solid #ccc;
+}
+img.socialicons {
+    width: 10%;
 }

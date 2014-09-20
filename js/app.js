@@ -51,6 +51,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
         }
     })
 
+    .state('tab.home', {
+        url: '/home',
+        views: {
+            'tab-home': {
+                templateUrl: 'templates/tab-home.html',
+                controller: 'HomeCtrl'
+            }
+        }
+    })
+
     .state('tab.categories', {
         url: '/dash/categories',
         views: {
@@ -177,7 +187,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
     })
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/dash');
+    $urlRouterProvider.otherwise('/tab/home');
 
 })
 
@@ -190,34 +200,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
         }
     };
 })
-.filter('inSlicesOf', 
-        ['$rootScope',  
-         function($rootScope) {
-             makeSlices = function(items, count) { 
-                 if (!count)            
-                     count = 3;
+    .filter('inSlicesOf', ['$rootScope',
+         function ($rootScope) {
+            makeSlices = function (items, count) {
+                if (!count)
+                    count = 3;
 
-                 if (!angular.isArray(items) && !angular.isString(items)) return items;
+                if (!angular.isArray(items) && !angular.isString(items)) return items;
 
-                 var array = [];
-                 for (var i = 0; i < items.length; i++) {
-                     var chunkIndex = parseInt(i / count, 10);
-                     var isFirst = (i % count === 0);
-                     if (isFirst)
-                         array[chunkIndex] = [];
-                     array[chunkIndex].push(items[i]);
-                 }
+                var array = [];
+                for (var i = 0; i < items.length; i++) {
+                    var chunkIndex = parseInt(i / count, 10);
+                    var isFirst = (i % count === 0);
+                    if (isFirst)
+                        array[chunkIndex] = [];
+                    array[chunkIndex].push(items[i]);
+                }
 
-                 if (angular.equals($rootScope.arrayinSliceOf, array))
-                     return $rootScope.arrayinSliceOf;
-                 else
-                     $rootScope.arrayinSliceOf = array;
+                if (angular.equals($rootScope.arrayinSliceOf, array))
+                    return $rootScope.arrayinSliceOf;
+                else
+                    $rootScope.arrayinSliceOf = array;
 
-                 return array;
-             };
+                return array;
+            };
 
-             return makeSlices; 
-         }]
-       )
+            return makeSlices;
+         }])
 
 ;
