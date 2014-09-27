@@ -4,14 +4,12 @@
             <h4 class="pull-left">Sort by</h4>
             <h4 class="pull-right">Filters</h4>
         </div>
-
         <div class="row productsCol" ng-repeat="pros in productItem | inSlicesOf:3">
             <div class="col col-33 text-center" ng-repeat="pro in pros">
-                <a href="#/tab/dash/categories/{{products.currentcategory}}/{{pro.id}}/product">
-                    <div class="item">
+                <a href="#/tab/dash/categories/product/{{pro.id}}">
+                    <div class="productItem">
                         <img src="{{pro.productimage[0].image|imagepath}}" class="full-image">
-                        <p>{{pro.name}}</p>
-                        <span class="royal">{{pro.price|currency}}</span>
+                        <p class="royal productprice">{{pro.price|noFractionCurrency}}</p>
                     </div>
                 </a>
             </div>

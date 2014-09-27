@@ -5,7 +5,14 @@ var myservices = angular.module('myservices', [])
 .factory('MyServices', function ($http, $location) {
     var retailer = 0;
     var category = 0;
+    var useremail ="";
     return {
+        getuseremail: function() {
+            return useremail;
+        },
+        setuseremail: function(user) {
+            useremail = user;
+        },
         getproductdetails: function (product, category) {
             return $http.get(adminurl + 'getproductdetails', {
                 params: {
@@ -86,6 +93,75 @@ var myservices = angular.module('myservices', [])
             console.log(data);
             TemplateService.totalproducts = data;
             return 0;
-        }
+        },
+        usercontact: function (id, name, email, phone, comment) {
+            return $http.post(adminurl + 'usercontact?id=' + id + '&name=' + name + '&email=' + email + '&phone=' + phone + '&comment=' + comment, {}, {
+                withCredentials: true
+            });
+        },
+
+        placeorder: function (form) {
+            return $http({
+                url: adminurl + 'placeorder',
+                method: "POST",
+                withCredentials: true,
+                data: {
+                    'form': form
+                }
+            });
+        },
+        seach: function (search) {
+            return $http.post(adminurl + 'searchbyname?search=' + search, {}, {
+                withCredentials: true
+            });
+        },
+        showwishlist: function (user) {
+            return $http.post(adminurl + 'showwishlist?user=' + user, {}, {
+                withCredentials: true
+            });
+        },
+        logout: function () {
+            return $http.post(adminurl + 'logout', {}, {
+                withCredentials: true
+            });
+        },
+        addtowishlist: function (user, product) {
+            return $http.post(adminurl + 'addtowishlist?user=' + user + '&product=' + product, {}, {
+                withCredentials: true
+            });
+        },
+        authenticate: function () {
+            return $http.post(adminurl + 'authenticate', {}, {
+                withCredentials: true
+            });
+        },
+        registeruser: function (firstname, lastname, email, password) {
+            return $http.post(adminurl + 'registeruser?firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&password=' + password, {}, {
+                withCredentials: true
+            });
+        },
+        loginuser: function (email, password) {
+            return $http.post(adminurl + 'loginuser?email=' + email + '&password=' + password, {}, {
+                withCredentials: true
+            });
+        },
+        signupemail: function (email) {
+            return $http.post(adminurl + 'signupemail?email=' + email, {}, {
+                withCredentials: true
+            });
+        },
+        orderemail: function (email, orderid) {
+            return $http.post(adminurl + 'orderemail?email=' + email + '&orderid=' + orderid, {}, {
+                withCredentials: true
+            });
+        },
+        getusercart: function (user) {
+            return $http.get(adminurl + 'getusercart?user=' + user, {}, {
+                withCredentials: true
+            });
+        },
+        getallslider: function (user) {
+            return $http.get(adminurl + 'getallslider');
+        },
     }
 });

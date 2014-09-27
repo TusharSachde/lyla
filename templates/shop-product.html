@@ -10,7 +10,7 @@
             </ion-slide-box>
             <div class="row">
                 <div class="col">
-                    <h3 class="text-center"><span class="royal">{{item.product.price|currency}}</span></h3>
+                    <h3 class="text-center"><span class="royal">{{item.product.price|noFractionCurrency}}</span></h3>
                     <p><strong>Description:</strong> {{item.product.description}}</p>
 
                     <p><strong style="float:left;">Quantity:</strong> <input type="number" ng-model="item.product.quantity2" class="numeric"> pcs</p>

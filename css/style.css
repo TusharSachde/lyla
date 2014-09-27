@@ -97,6 +97,7 @@ a {
 }
 .item {
     color: #a8a8a8 !important;
+    font-size: 14px;
 }
 h1,
 h2,
@@ -130,10 +131,6 @@ p {
 }
 .productsCol .col {
     padding: 2px;
-    -webkit-transition: all 500ms;
-}
-.productsCol .col:hover {
-    padding: 5px;
 }
 .bar .button.back-button {
     color: #696969;
@@ -154,4 +151,35 @@ p {
 }
 img.socialicons {
     width: 10%;
+}
+.item-divider {
+    font-family: 'Cheddar Jack';
+    font-size: 21px;
+}
+.imageset {
+    width: 95%;
+    border: 10px solid #f7f7f7;
+    height: auto;
+    position: relative;
+}
+.toggle {
+    position: absolute;
+    top: 40%;
+    z-index: 10;
+}
+.toggle.left {
+    left: -30px;
+}
+.toggle.right {
+    right: -30px;
+}
+.productsCol+.productsCol {
+    border-top: 1px solid #ccc;
+}
+.productprice {
+    position: relative;
+    bottom: 0;
+}
+.productItem {
+    position: relative;
 }

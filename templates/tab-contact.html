@@ -18,18 +18,18 @@
                 Send us query
             </div>
             <label class="item item-input">
-                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Name" ng-model="contact.name">
             </label>
             <label class="item item-input">
-                <input type="email" placeholder="Email">
+                <input type="email" placeholder="Email" ng-model="contact.email">
             </label>
             <label class="item item-input">
-                <input type="tel" placeholder="Phone">
+                <input type="tel" placeholder="Phone" ng-model="contact.phone">
             </label>
             <label class="item item-input">
-                <textarea placeholder="Comments"></textarea>
+                <textarea placeholder="Comments" ng-model="contact.comment"></textarea>
             </label>
-            <div class="padding"><button class="button button-block button-positive">Submit</button></div>
+            <div class="padding"><button class="button button-block button-positive" ng-click="usercontact(contact)">Submit</button></div>
         </div>
     </ion-content>
 </ion-view>

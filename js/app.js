@@ -60,17 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             }
         }
     })
-
-    .state('tab.categories', {
-        url: '/dash/categories',
-        views: {
-            'tab-dash': {
-                templateUrl: 'templates/shop-categories.html',
-                controller: 'CategoryCtrl'
-            }
-        }
-    })
-
+    
     .state('tab.items', {
         url: '/dash/categories/:cid',
         views: {
@@ -82,7 +72,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
     })
 
     .state('tab.product', {
-        url: '/dash/categories/:cid/:id/product',
+        url: '/dash/categories/product/:pid',
         views: {
             'tab-dash': {
                 templateUrl: 'templates/shop-product.html',
@@ -141,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             views: {
                 'tab-account': {
                     templateUrl: 'templates/account-signup.html',
-                    controller: 'SignupCtrl'
+                    controller: 'LoginCtrl'
                 }
             }
         })
@@ -200,7 +190,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
         }
     };
 })
-    .filter('inSlicesOf', ['$rootScope',
+.filter('inSlicesOf', ['$rootScope',
          function ($rootScope) {
             makeSlices = function (items, count) {
                 if (!count)
@@ -227,5 +217,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
 
             return makeSlices;
          }])
+.filter('noFractionCurrency',
+                [ '$filter', '$locale',
+                 function(filter, locale) {
+                     var currencyFilter = filter('currency');
+                     var formats = locale.NUMBER_FORMATS;
+                     return function(amount, currencySymbol) {
+                         var value = currencyFilter(amount, currencySymbol);
+                         var sep = value.indexOf(formats.DECIMAL_SEP);
+                         if(amount >= 0) { 
+                             return value.substring(0, sep);
+                         }
+                         return value.substring(0, sep) + ')';
+                     };
+                 } ]);
 
 ;

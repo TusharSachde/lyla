@@ -21,7 +21,38 @@
                 <img src="img/logo.jpg" style="width:40%;">
             </div>
             <div class="padding">
-                <img src="img/pick.png" style="width:60%;">
+                <img src="img/pick.png" style="width:90%;">
+                
+                    <div class="productset">
+                        <div class="imageset">
+<!--
+                            <a ng-click="slidesetprev(showslideset1);">
+                                <div class="toggle left">
+                                    <img src="img/leftbanner.png">
+                                </div>
+                            </a>
+                            <a ng-click="slidesetnext(showslideset1);">
+                                <div class="toggle right">
+                                    <img src="img/rightbanner.png">
+                                </div>
+                            </a>  
+-->
+                            <ion-scroll direction="x" >
+                                <div class="row">
+                                    <div class="col col-20" ng-repeat="slider in sliders">
+                                        <a href="#/tab/dash/categories/product/{{slider.link}}">
+                                        <img src="{{slider.image|imagepath}}" class="full-image">
+                                        <p class="royal productprice">{{slider.price|noFractionCurrency}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </ion-scroll>
+                            
+                                                                                                       
+                        </div>
+                    </div>
+                
+                
             </div>
             <div class="padding">
                 <img src="img/butterfly.png" style="width:70%;">

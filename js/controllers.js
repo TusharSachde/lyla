@@ -2,13 +2,14 @@ angular.module('starter.controllers', ['myservices'])
 
 .controller('HomeCtrl', function ($scope, $stateParams, MyServices) {
 
+    var slidersuccess = function (data, status) {
+        $scope.sliders = data;
+    };
+    MyServices.getallslider().success(slidersuccess);
+
 })
 
 .controller('DashCtrl', function ($scope, $stateParams, MyServices) {
-
-})
-
-.controller('CategoryCtrl', function ($scope, $stateParams, MyServices) {
 
 })
 
@@ -66,7 +67,8 @@ angular.module('starter.controllers', ['myservices'])
         maxWidth: 200,
         showDelay: 500
     });
-    var productId = $stateParams.id;
+    
+    var productId = $stateParams.pid;
 
     var onsuccess = function (data, status) {
         $scope.item = data;
@@ -100,7 +102,9 @@ angular.module('starter.controllers', ['myservices'])
 
 .controller('LookbookitemCtrl', function ($scope) {})
 
-.controller('AccountCtrl', function ($scope) {})
+.controller('AccountCtrl', function ($scope) {
+    
+})
 
 .controller('CartCtrl', function ($scope, $stateParams, MyServices) {
     //Product details
@@ -138,7 +142,34 @@ angular.module('starter.controllers', ['myservices'])
 
 })
 
-.controller('ContactCtrl', function ($scope) {})
+.controller('ContactCtrl', function ($scope, $ionicPopup, $timeout, MyServices) {
+    
+    $scope.contact={name:"",phone:"",email:"",comment:""};
+    $scope.showPopup = function () {
+
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="text-center"><h1 class="ion-ios7-checkmark balanced"></h1><p>Thank you for your comment.</p>',
+            title: 'Message Sent!',
+            scope: $scope,
+
+        });
+        $timeout(function() {
+            myPopup.close(); //close the popup after 1.5 seconds for some reason
+        }, 1500);
+    };
+
+    var contactfun = function (data, status) {
+        console.log(data);
+        $scope.contact={name:"",phone:"",email:"",comment:""};
+    };
+    $scope.usercontact = function (data) {
+        
+        MyServices.usercontact("", data.name, data.email, data.phone, data.comment).success(contactfun);
+        $scope.showPopup();
+    };
+
+})
 
 .controller('CheckoutCtrl', function ($scope, MyServices) {
     var ontotalsuccess = function (data, status) {
@@ -169,14 +200,79 @@ angular.module('starter.controllers', ['myservices'])
     });
 })
 
-.controller('LoginCtrl', function ($scope) {
-
-    $scope.loginfunction = function () {
-
+.controller('LoginCtrl', function ($scope, $location, MyServices) {
+    //Authenticate
+    
+    //$scope.android="Android";
+    
+    var cartdata= function (data, status){};
+    var authenticate = function (data, status) {
+        MyServices.getusercart(data.id).success(cartdata);
+        if (data != "false") {
+            $scope.loginlogouttext = "Logout";
+        }
+    };
+    MyServices.authenticate().success(authenticate);
+    
+    var emailsend = function (data, status) {
+        console.log(data);
+        alert("Email send to you");
+    };
+    
+    //login
+    $scope.emptydata = "";
+    $scope.getlogin2 = true;
+    $scope.useremail = MyServices.getuseremail();
+    
+    var getlogin = function (data, status) {
+        $scope.emptydata = data;
+        if (data != "false") {
+            //$scope.msg = "Login Successful";
+            $scope.useremail = data.email;
+            MyServices.setuseremail($scope.useremail);
+            $scope.getlogin2 = false;
+            $scope.login.email = " ";
+            $scope.login.password = " ";
+          //  $location.path('/#/tab/account/login');
+        } else {
+            $scope.msg = "Invalid Email Or Password";
+        }
+    };
+    
+    $scope.userlogin = function (login) {
+        console.log(login);
+        MyServices.loginuser(login.email, login.password).success(getlogin);
+    };
+    
+    //logout
+    var logoutsuccess = function(data, status)
+    {
+        if (data != "false")
+        {
+            $scope.getlogin2 = true;
+            $scope.emptydata = "false";
+            MyServices.setuseremail(" ");
+        };
+    }
+    $scope.logout = function () {
+        MyServices.logout().success(logoutsuccess);
+    };
+        
+    //Signup
+    var getsignup = function (data, status) {
+        if (data != "false") {
+            $scope.msgr = "Registred Successful";
+            $location.url("#/account/login");
+            MyServices.signupemail(data.email).success(emailsend);
+        } else {
+            $scope.msgr = "Error In Registration";
+        }
+    };
+    $scope.signup = function (register) {
+        console.log(register);
+        MyServices.registeruser(register.firstname, register.lastname, register.email, register.password).success(getsignup);
     };
 
 })
-
-.controller('SignupCtrl', function ($scope) {})
 
 .controller('OrderCtrl', function ($scope) {});
