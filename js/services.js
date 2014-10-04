@@ -163,5 +163,18 @@ var myservices = angular.module('myservices', [])
         getallslider: function (user) {
             return $http.get(adminurl + 'getallslider');
         },
+        chargestripe: function (token, email,amount,name) {
+            return $http.get('http://wohlig.com/stripe/index.php/welcome/chargestripe', {
+                params: {
+                    token: token,
+                    email: email,
+                    amount: amount*100,
+                    name: name,
+
+                }
+            }, {
+                withCredentials: true
+            });
+        },
     }
 });
