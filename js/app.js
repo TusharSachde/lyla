@@ -80,6 +80,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'myservices'])
             }
         }
     })
+    
+    .state('tab.producthome', {
+        url: '/dash/home/product/:pid',
+        views: {
+            'tab-home': {
+                templateUrl: 'templates/shop-product.html',
+                controller: 'ProductCtrl'
+            }
+        }
+    })
 
     .state('tab.lookbook', {
         url: '/lookbook',
