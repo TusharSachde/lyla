@@ -53,7 +53,14 @@
         <div class="padding">
 
             <button class="button button-small button-royal" id="customButton" ng-click="StipePaymentGen(subtotal+form.shippingcost-discountamount)">Pay with card</button>
-            
+            <script src="lib/js/paypal-button.min.js?merchant=lyla@lylaloves.co.uk"
+                                            data-button="buynow"
+                                            data-name="Lyla Loves"
+                                            data-amount="{{subtotal+form.shippingcost-discountamount}}.00"
+                                            data-currency="GBP"
+                                            data-callback="http://www.lylaloves.co.uk/#/thankyou"
+                                            async
+                                            ></script>
             
 
         </div>
